@@ -237,6 +237,8 @@ pd.plotting.scatter_matrix(boston_cont,figsize  = [11, 11]);
 ![png](index_files/index_12_0.png)
 
 
+## Correlation matrix
+
 Next, let's look at the correlation matrix
 
 
