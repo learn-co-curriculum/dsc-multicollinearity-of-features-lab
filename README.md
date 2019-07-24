@@ -22,12 +22,12 @@ boston = load_boston()
 
 boston_features = pd.DataFrame(boston.data, columns = boston.feature_names)
 
-# first, create bins for based on the values observed. 5 values will result in 4 bins
+# first, create bins for RAD based on the values observed. 5 values will result in 4 bins
 bins = [0, 3, 4 , 5, 24]
 bins_rad = pd.cut(boston_features['RAD'], bins)
 bins_rad = bins_rad.cat.as_unordered()
 
-# first, create bins for based on the values observed. 5 values will result in 4 bins
+# first, create bins for TAX based on the values observed. 6 values will result in 5 bins
 bins = [0, 250, 300, 360, 460, 712]
 bins_tax = pd.cut(boston_features['TAX'], bins)
 bins_tax = bins_tax.cat.as_unordered()
