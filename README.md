@@ -32,8 +32,8 @@ bins = [0, 250, 300, 360, 460, 712]
 bins_tax = pd.cut(boston_features['TAX'], bins)
 bins_tax = bins_tax.cat.as_unordered()
 
-tax_dummy = pd.get_dummies(bins_tax, prefix="TAX")
-rad_dummy = pd.get_dummies(bins_rad, prefix="RAD")
+tax_dummy = pd.get_dummies(bins_tax, prefix="TAX", drop_first=True)
+rad_dummy = pd.get_dummies(bins_rad, prefix="RAD", drop_first=True)
 boston_features = boston_features.drop(["RAD","TAX"], axis=1)
 boston_features = pd.concat([boston_features, rad_dummy, tax_dummy], axis=1)
 ```
