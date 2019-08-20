@@ -47,15 +47,45 @@ boston_features.head()
 
 Create the scatter matrix for the Boston Housing data.
 
+
+```python
+
+```
+
 This took a while to load. Not surprisingly, the categorical variables didn't really provide any meaningful result. remove the categorical columns associated with "RAD" and "TAX" from the data again and look at the scatter matrix again.
+
+
+```python
+
+```
+
+
+```python
+
+```
 
 ## Correlation matrix
 
 Next, let's look at the correlation matrix
 
+
+```python
+
+```
+
 Return "True" for positive or negative correlations that are bigger than 0.75.
 
+
+```python
+
+```
+
 Remove the most problematic feature from the data.
+
+
+```python
+
+```
 
 ## Summary
 Good job! You've now edited the Boston Housing Data so highly correlated variables are removed. 
