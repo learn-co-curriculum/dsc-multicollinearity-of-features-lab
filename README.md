@@ -62,8 +62,8 @@ bins = [0, 250, 300, 360, 460, 712]
 bins_tax = pd.cut(boston_features['TAX'], bins)
 bins_tax = bins_tax.cat.as_unordered()
 
-tax_dummy = pd.get_dummies(bins_tax, prefix="TAX")
-rad_dummy = pd.get_dummies(bins_rad, prefix="RAD")
+tax_dummy = pd.get_dummies(bins_tax, prefix="TAX", drop_first=True)
+rad_dummy = pd.get_dummies(bins_rad, prefix="RAD", drop_first=True)
 boston_features = boston_features.drop(["RAD","TAX"], axis=1)
 boston_features = pd.concat([boston_features, rad_dummy, tax_dummy], axis=1)
 ```
@@ -106,11 +106,9 @@ boston_features.head()
       <th>PTRATIO</th>
       <th>B</th>
       <th>LSTAT</th>
-      <th>RAD_(0, 3]</th>
       <th>RAD_(3, 4]</th>
       <th>RAD_(4, 5]</th>
       <th>RAD_(5, 24]</th>
-      <th>TAX_(0, 250]</th>
       <th>TAX_(250, 300]</th>
       <th>TAX_(300, 360]</th>
       <th>TAX_(360, 460]</th>
@@ -131,8 +129,6 @@ boston_features.head()
       <td>15.3</td>
       <td>396.90</td>
       <td>4.98</td>
-      <td>1</td>
-      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -154,11 +150,9 @@ boston_features.head()
       <td>17.8</td>
       <td>396.90</td>
       <td>9.14</td>
-      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -177,11 +171,9 @@ boston_features.head()
       <td>17.8</td>
       <td>392.83</td>
       <td>4.03</td>
-      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -200,11 +192,9 @@ boston_features.head()
       <td>18.7</td>
       <td>394.63</td>
       <td>2.94</td>
-      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -223,11 +213,9 @@ boston_features.head()
       <td>18.7</td>
       <td>396.90</td>
       <td>5.33</td>
-      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -339,20 +327,20 @@ boston_cont.corr()
     <tr>
       <th>CRIM</th>
       <td>1.000000</td>
-      <td>-0.199458</td>
-      <td>0.404471</td>
-      <td>-0.055295</td>
-      <td>0.417521</td>
-      <td>-0.219940</td>
-      <td>0.350784</td>
-      <td>-0.377904</td>
-      <td>0.288250</td>
-      <td>-0.377365</td>
-      <td>0.452220</td>
+      <td>-0.200469</td>
+      <td>0.406583</td>
+      <td>-0.055892</td>
+      <td>0.420972</td>
+      <td>-0.219247</td>
+      <td>0.352734</td>
+      <td>-0.379670</td>
+      <td>0.289946</td>
+      <td>-0.385064</td>
+      <td>0.455621</td>
     </tr>
     <tr>
       <th>ZN</th>
-      <td>-0.199458</td>
+      <td>-0.200469</td>
       <td>1.000000</td>
       <td>-0.533828</td>
       <td>-0.042697</td>
@@ -366,7 +354,7 @@ boston_cont.corr()
     </tr>
     <tr>
       <th>INDUS</th>
-      <td>0.404471</td>
+      <td>0.406583</td>
       <td>-0.533828</td>
       <td>1.000000</td>
       <td>0.062938</td>
@@ -380,7 +368,7 @@ boston_cont.corr()
     </tr>
     <tr>
       <th>CHAS</th>
-      <td>-0.055295</td>
+      <td>-0.055892</td>
       <td>-0.042697</td>
       <td>0.062938</td>
       <td>1.000000</td>
@@ -394,7 +382,7 @@ boston_cont.corr()
     </tr>
     <tr>
       <th>NOX</th>
-      <td>0.417521</td>
+      <td>0.420972</td>
       <td>-0.516604</td>
       <td>0.763651</td>
       <td>0.091203</td>
@@ -408,7 +396,7 @@ boston_cont.corr()
     </tr>
     <tr>
       <th>RM</th>
-      <td>-0.219940</td>
+      <td>-0.219247</td>
       <td>0.311991</td>
       <td>-0.391676</td>
       <td>0.091251</td>
@@ -422,7 +410,7 @@ boston_cont.corr()
     </tr>
     <tr>
       <th>AGE</th>
-      <td>0.350784</td>
+      <td>0.352734</td>
       <td>-0.569537</td>
       <td>0.644779</td>
       <td>0.086518</td>
@@ -436,7 +424,7 @@ boston_cont.corr()
     </tr>
     <tr>
       <th>DIS</th>
-      <td>-0.377904</td>
+      <td>-0.379670</td>
       <td>0.664408</td>
       <td>-0.708027</td>
       <td>-0.099176</td>
@@ -450,7 +438,7 @@ boston_cont.corr()
     </tr>
     <tr>
       <th>PTRATIO</th>
-      <td>0.288250</td>
+      <td>0.289946</td>
       <td>-0.391679</td>
       <td>0.383248</td>
       <td>-0.121515</td>
@@ -464,7 +452,7 @@ boston_cont.corr()
     </tr>
     <tr>
       <th>B</th>
-      <td>-0.377365</td>
+      <td>-0.385064</td>
       <td>0.175520</td>
       <td>-0.356977</td>
       <td>0.048788</td>
@@ -478,7 +466,7 @@ boston_cont.corr()
     </tr>
     <tr>
       <th>LSTAT</th>
-      <td>0.452220</td>
+      <td>0.455621</td>
       <td>-0.412995</td>
       <td>0.603800</td>
       <td>-0.053929</td>
