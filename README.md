@@ -3,12 +3,12 @@
 
 ## Introduction
 
-In this lab you'll identify multicollinearity in the Boston Housing dataset.
+In this lab, you'll identify multicollinearity in the Boston Housing dataset.
 
 ## Objectives
 You will be able to:
-* Plot heatmaps for the predictors of the Boston dataset
-* Calculate correlation matrices
+* Create and Interpret a correlation matrix/heatmap and scatter matrix
+* Identify if variables are exhibiting collinearity
 
 ## Correlation matrix for the Boston Housing data
 
@@ -88,4 +88,4 @@ Remove the most problematic feature from the data:
 ```
 
 ## Summary
-Good job! You've now edited the Boston Housing data so highly correlated variables are removed. 
+Good job! You got some hands-on practice creating and interpreting a scatter matrix and correlation matrix to identify if variables are collinear in the Boston Housing data set. You also edited the Boston Housing data set so highly correlated variables are removed.
