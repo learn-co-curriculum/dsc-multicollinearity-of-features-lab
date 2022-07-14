@@ -1,4 +1,3 @@
-
 # Multicollinearity of Features - Lab
 
 ## Introduction
@@ -6,9 +5,11 @@
 In this lab, you'll identify multicollinearity in the Ames Housing dataset.
 
 ## Objectives
+
 You will be able to:
+
 * Create a scatter matrix and correlation matrix
-* Assess Intpret the output of a correlation matrix
+* Assess and interpret the output of a correlation matrix
 * Identify if variables are exhibiting collinearity
 * Decide how to address the collinearity in the data set
 
@@ -263,7 +264,9 @@ pd.plotting.scatter_matrix(ames_preprocessed, figsize=[12, 12]);
 ```
 
 
+    
 ![png](index_files/index_10_0.png)
+    
 
 
 The scatter matrix took a while to load and is hard to read. Run the code below to see if adjusting some of the visualization settings helps. 
